@@ -38,7 +38,7 @@ body {
   display: flex;
   color: black;
   flex-direction: column;
-  padding:  50px;
+  padding: 30px;
   width: 70vw;
   background-color: white;
   border: solid white  2px;

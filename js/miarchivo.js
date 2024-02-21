@@ -87,6 +87,8 @@ function Usuario(nombres, contraseñas) {
             for (let j = 0; j < this.nombres.length; j++) {
                 if (inputUser.value == this.nombres[j] && inputPass.value == this.contraseñas[j]) {
                     usuarioLog = inputUser.value
+                    localStorage.setItem("log", "true")
+                    localStorage.setItem("user", usuarioLog)
                     pantallaLogin = document.getElementById("rAfter");
                     pantallaLogin.remove();
                     let pantallaFinal = document.createElement ("div");
@@ -105,6 +107,7 @@ function Usuario(nombres, contraseñas) {
                                 <nav class="navbar navbar-expand-lg custom_nav-container ">
                                 <a class="navbar-brand" href="index.html">
                                     <img id="logo" src="images/logo.png" alt="">
+                                    <button type="button" id="sessionClosebtn" class="btn btn-primary">Cerrar Sesion</button>
                                 </a>
                                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                                     <span class=""> </span>
@@ -244,7 +247,11 @@ function Usuario(nombres, contraseñas) {
                     </div>
                     `
                     document.body.appendChild(pantallaFinal)
-                    return null;
+                    let botonCSesion = document.getElementById("sessionClosebtn")
+                    botonCSesion.onclick = () =>{
+                        localStorage.clear()
+                        location.reload();
+                    }
                 }
             }
         }
@@ -340,6 +347,8 @@ function Usuario(nombres, contraseñas) {
             if(nContra == inputPassC.value && !this.nombres.includes(nUsuario) && nUsuario != ""){
                 this.nombres.push(nUsuario);
                 this.contraseñas.push(nContra);
+                localStorage.setItem("log", "true")
+                localStorage.setItem("user", nUsuario)
                 console.table(this.contraseñas);
                 console.table(this.nombres);
                 pantallaLogin = document.getElementById("rAfter");
@@ -360,6 +369,7 @@ function Usuario(nombres, contraseñas) {
                             <nav class="navbar navbar-expand-lg custom_nav-container ">
                             <a class="navbar-brand" href="index.html">
                                 <img id="logo" src="images/logo.png" alt="">
+                                <button type="button" id="sessionClosebtn" class="btn btn-primary">Cerrar Sesion</button>
                             </a>
                             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                                 <span class=""> </span>
@@ -499,7 +509,11 @@ function Usuario(nombres, contraseñas) {
                 </div>
                 `
                 document.body.appendChild(pantallaFinal)
-                return null;
+                let botonCSesion = document.getElementById("sessionClosebtn")
+                botonCSesion.onclick = () =>{
+                    localStorage.clear()
+                    location.reload();
+                }
             }
         }
     }
@@ -536,3 +550,170 @@ let botonLogin = document.getElementById("loginbtn");
 let botonRegistro = document.getElementById("registerbtn");
 botonLogin.addEventListener("click", llamarLogin)
 botonRegistro.addEventListener("click", llamarRegistro)
+let logged = localStorage.getItem("log")
+if (logged == "true"){
+    let nUsuario = localStorage.getItem("user")
+    pantallaLogin = document.getElementById("rAfter");
+    pantallaLogin.remove();
+    let pantallaFinal = document.createElement ("div");
+    pantallaFinal.innerHTML = 
+    `
+    <div id="rAfter">
+        <div class="hero_area">
+            <div class="hero_bg_box">
+            <div class="bg_img_box">
+                <img src="images/hero-bg.png" alt="">
+            </div>
+            </div>
+            <!-- header section strats -->
+            <header class="header_section">
+            <div class="container-fluid">
+                <nav class="navbar navbar-expand-lg custom_nav-container ">
+                <a class="navbar-brand" href="index.html">
+                    <img id="logo" src="images/logo.png" alt="">
+                    <button type="button" id="sessionClosebtn" class="btn btn-primary">Cerrar Sesion</button>
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class=""> </span>
+                </button>
+                </nav>
+            </div>
+            </header>
+                <!-- slider section -->
+        <section class="welcomeText"> 
+            <h2> ¡Bienvenido, ${nUsuario}! </h2> 
+        </section>
+        <section class="slider_section ">
+            <div id="customCarousel1" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="container ">
+                    <div class="row">
+                        <div class="col-md-6 ">
+                        <div class="detail-box">
+                            <h1>
+                                Calculá <br>
+                                Precios de compras <br>
+                                Internacionales
+                            </h1>
+                            <div class="btn-box">
+                            </div>
+                        </div>
+                        </div>
+                        <div class="col-md-6">
+                        <div class="img-box">
+                            <img src="images/slider-img.png" alt="">
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                <div class="carousel-item ">
+                    <div class="container ">
+                    <div class="row">
+                        <div class="col-md-6 ">
+                        <div class="detail-box">
+                            <h1>
+                            Dolar Tarjeta <br>
+                            Actualizado
+                            </h1>
+                            <p>
+                        </div>
+                        </div>
+                        <div class="col-md-6">
+                        <div class="img-box">
+                            <img src="images/slider-img.png" alt="">
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+            <!-- end slider section -->
+        </div>
+        
+        
+        <!-- service section -->
+        
+        <section class="service_section layout_padding">
+            <div class="service_container">
+            <div class="container ">
+                <div class="heading_container heading_center">
+                <h2>
+                    Nuestro <span>Servicio</span>
+                </h2>
+                </div>
+                <div class="row">
+                <div class="col-md-4 ">
+                    <div class="box ">
+                    <div class="img-box">
+                        <img src="images/s1.png" alt="">
+                    </div>
+                    <div class="detail-box">
+                        <h5>
+                        Sabé los precios antes de comprar
+                        </h5>
+                        <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed malesuada enim ac nulla tincidunt scelerisque.
+                        </p>
+                    </div>
+                    </div>
+                </div>
+                <div class="col-md-4 ">
+                    <div class="box ">
+                    <div class="img-box">
+                        <img src="images/s3.png" alt="">
+                    </div>
+                    <div class="detail-box">
+                        <h5>
+                        Mantenemos el dolar actualizado
+                        </h5>
+                        <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed malesuada enim ac nulla tincidunt scelerisque.
+                        </p>
+                    </div>
+                    </div>
+                </div>
+                <div class="col-md-4 ">
+                    <div class="box ">
+                    <div class="img-box">
+                        <img src="images/w1.png" alt="">
+                    </div>
+                    <div class="detail-box">
+                        <h5>
+                        Dejanos tu review
+                        </h5>
+                        <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed malesuada enim ac nulla tincidunt scelerisque.
+                        </p>
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+            </div>
+        </section>
+        <!-- jQery -->
+        <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+        <!-- popper js -->
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+        </script>
+        <!-- bootstrap js -->
+        <script type="text/javascript" src="js/bootstrap.js"></script>
+        <!-- owl slider -->
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js">
+        </script>
+        <!-- custom js -->
+        <script type="text/javascript" src="js/custom.js"></script>
+        <!-- JS entrega -->
+        <script defer src="js/miarchivo.js"></script>
+    </div>
+    `
+    document.body.appendChild(pantallaFinal)
+    let botonCSesion = document.getElementById("sessionClosebtn")
+    botonCSesion.onclick = () =>{
+        localStorage.clear()
+        location.reload();
+    }
+}
